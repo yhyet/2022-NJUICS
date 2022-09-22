@@ -88,7 +88,7 @@ static int cmd_help(char *args) {
   /* extract the first argument */
   char *arg = strtok(NULL, " ");
   int i;
-
+  printf("%s",arg);
   if (arg == NULL) {
     /* no argument given */
     for (i = 0; i < NR_CMD; i ++) {
@@ -99,7 +99,7 @@ static int cmd_help(char *args) {
     for (i = 0; i < NR_CMD; i ++) {
       if (strcmp(arg, cmd_table[i].name) == 0) {
         printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
-        return -1;
+        return 0;
       }
     }
     printf("Unknown command '%s'\n", arg);
