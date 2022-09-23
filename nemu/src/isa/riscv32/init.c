@@ -31,7 +31,7 @@ static void restart() {
 
   /* The zero register is always 0. */
   cpu.gpr[0] = 0;
-  cpu.gpr[1]=11;
+ cpu.gpr[1]=00000000000000000000000000000010;
 }
 
 void init_isa() {
