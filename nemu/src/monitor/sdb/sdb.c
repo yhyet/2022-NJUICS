@@ -136,7 +136,13 @@ static int cmd_info(char *args) {
 }
 
 static int cmd_x(char *args) {
-return 0;
+  char *arg0 = strtok(NULL," ");
+  int N=0;
+  sscanf(arg0,"%d",&N);
+  //char *arg1 = strtok(NULL," ");
+
+
+  return 0;
 }
 
 static int cmd_p(char *args) {
