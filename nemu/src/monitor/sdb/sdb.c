@@ -19,6 +19,7 @@
 #include <readline/history.h>
 #include "sdb.h"
 
+
 static int is_batch_mode = false;
 
 void init_regex();
@@ -124,7 +125,14 @@ static int cmd_si(char *args) {
 }
 
 static int cmd_info(char *args) {
-return 0;
+  char *arg = strtok(NULL," ");
+  if(strcmp(arg,"r")==0)
+    isa_reg_display();
+  else if(strcmp(arg,"w")==0)
+    ;
+  else
+    printf("Unknown command '%s'\n", arg);
+  return 0;
 }
 
 static int cmd_x(char *args) {
