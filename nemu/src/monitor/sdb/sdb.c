@@ -150,7 +150,7 @@ static int cmd_x(char *args) {
   for (;N>0;N--){
     vdata=vaddr_read(addr,4);
     printf("%08x is %08x\n",addr,vdata);
-    addr++;
+    addr=addr+4;
   }
   return 0;
 }
