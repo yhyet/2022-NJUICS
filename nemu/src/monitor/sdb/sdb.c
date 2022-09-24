@@ -149,7 +149,7 @@ static int cmd_x(char *args) {
   //printf("%08x\n",vaddr);
   for (;N>0;N--){
     vdata=vaddr_read(addr,4);
-    printf("%08x is %08x\n",addr,vdata);
+    printf("0x%08x is 0x%08x\n",addr,vdata);
     addr=addr+4;
   }
   return 0;
