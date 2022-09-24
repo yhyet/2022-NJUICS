@@ -145,9 +145,9 @@ static int cmd_x(char *args) {
   vaddr_t addr=0;
   sscanf(arg2,"%u",&addr);
   word_t vaddr=vaddr_read(addr,N);
+  printf("%s\n",arg2);
   printf("%u",vaddr);
   //free(arg2);
-  //printf("%s\n",arg2);
   return 0;
 }
 
