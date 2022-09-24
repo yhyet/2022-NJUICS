@@ -139,9 +139,11 @@ static int cmd_x(char *args) {
   char *arg0 = strtok(NULL," ");
   int N=0;
   sscanf(arg0,"%d",&N);
-  //char *arg1 = strtok(NULL," ");
-
-
+  char *arg1 = strtok(NULL," ");
+  char *arg2 = strtok(arg1,"x");
+  char *arg3 = strtok(NULL,"x");
+  free(arg2);
+  printf("%s",arg3);
   return 0;
 }
 
