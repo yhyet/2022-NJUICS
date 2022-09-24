@@ -144,11 +144,9 @@ static int cmd_x(char *args) {
   arg2 = strtok(NULL,"x");
   vaddr_t addr=0;
   sscanf(arg2,"%u",&addr);
-  //word_t vaddr=vaddr_read(addr,N);
+  word_t vaddr=vaddr_read(addr,N);
   printf("%u\n",addr);
-  //vaddr=vaddr+1;
-  //printf("%u",vaddr);
-  //free(arg2);
+  printf("%u\n",vaddr);
   return 0;
 }
 
