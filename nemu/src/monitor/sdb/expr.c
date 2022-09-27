@@ -108,10 +108,11 @@ static bool make_token(char *e) {
 	  case '/': tokens[nr_token].type='/';nr_token++;break;
 	  case '(': tokens[nr_token].type='(';nr_token++;break;
 	  case ')': tokens[nr_token].type=')';nr_token++;break;
-	  case TK_NUMBER: tokens[nr_token].type=TK_NUMBER;strcpy(tokens[nr_token].str,e+position);nr_token++;break;
+	  case TK_NUMBER: tokens[nr_token].type=TK_NUMBER;strcpy(tokens[nr_token].str,e+position);printf("%s",tokens[nr_token].str);nr_token++;break;
 	  case TK_EQ: tokens[nr_token].type=TK_EQ;nr_token++;break;
           default: TODO();
         }
+        assert(e!=NULL);
         position += substr_len;
         break;
       }
