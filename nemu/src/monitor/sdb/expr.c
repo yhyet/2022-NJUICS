@@ -19,9 +19,9 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
-
+#include <string.h>
 enum {
-  TK_NOTYPE = 256, TK_EQ,
+  TK_NOTYPE = 256, TK_EQ,TK_NUMBER,
 
   /* TODO: Add more token types */
 
@@ -39,6 +39,12 @@ static struct rule {
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
   {"==", TK_EQ},        // equal
+  {"-",'-'},
+  {"\\*",'*'},
+  {"/",'/'},
+  {"(",'('},
+  {")",')'},
+  {"(^[0-9]|[1-9][0-9]+)$",TK_NUMBER},
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -52,7 +58,7 @@ void init_regex() {
   int i;
   char error_msg[128];
   int ret;
-
+//put zhengze in the re--yhy
   for (i = 0; i < NR_REGEX; i ++) {
     ret = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
     if (ret != 0) {
@@ -80,7 +86,7 @@ static bool make_token(char *e) {
   while (e[position] != '\0') {
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
-      if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
+        if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
 
@@ -95,6 +101,15 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
+	  case TK_NOTYPE: break;
+	  case '+': tokens[nr_token].type='+';nr_token++;break;
+	  case '-': tokens[nr_token].type='-';nr_token++;break;
+	  case '*': tokens[nr_token].type='*';nr_token++;break;
+	  case '/': tokens[nr_token].type='/';nr_token++;break;
+	  case '(': tokens[nr_token].type='(';nr_token++;break;
+	  case ')': tokens[nr_token].type=')';nr_token++;break;
+	  case TK_NUMBER: tokens[nr_token].type=TK_NUMBER;strcpy(tokens[nr_token].str,e+position);nr_token++;break;
+	  case TK_EQ: tokens[nr_token].type=TK_EQ;nr_token++;break;
           default: TODO();
         }
 
@@ -110,7 +125,6 @@ static bool make_token(char *e) {
 
   return true;
 }
-
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
