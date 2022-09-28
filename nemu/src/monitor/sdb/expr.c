@@ -203,9 +203,9 @@ static word_t eval(int p,int q){
   }
   else{
     //printf("%d\n",nr_token);
-    printf("%d,%d\n",p,q);
+    //printf("%d,%d\n",p,q);
     int op=op_find(p,q);
-    printf("%d\n",op);
+    //printf("%d\n",op);
     int val1=eval(p,op-1);
     int val2=eval(op+1,q);
 
