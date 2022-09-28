@@ -104,7 +104,7 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
-	  case TK_NOTYPE: ;
+	  case TK_NOTYPE: printf("space");break;
 	  case '+': tokens[nr_token].type='+';nr_token++;break;
 	  case '-': tokens[nr_token].type='-';nr_token++;break;
 	  case '*': tokens[nr_token].type='*';nr_token++;break;
