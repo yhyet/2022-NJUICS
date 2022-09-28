@@ -137,7 +137,7 @@ word_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  return eval(0,nr_token);
+  return eval(0,nr_token-1);
   //word_t answer=0;
   //sscanf(ans,"%08x",&answer);
 }
