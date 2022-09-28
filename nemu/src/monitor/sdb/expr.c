@@ -89,12 +89,12 @@ static bool make_token(char *e) {
   while (e[position] != '\0') {
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
-        printf("pmatch.rm_so=%d\n",pmatch.rm_so);
+        //printf("pmatch.rm_so=%d\n",pmatch.rm_so);
         if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
-        printf("rmeo=%d\n",substr_len);
-        printf("%c %c\n",e[position],e[position+1]);
+        //printf("rmeo=%d\n",substr_len);
+        //printf("%c %c\n",e[position],e[position+1]);
         Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
@@ -141,7 +141,7 @@ word_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  *success=true;
+  //*success=true;
   return eval(0,nr_token-1);
   //word_t answer=0;
   //sscanf(ans,"%08x",&answer);

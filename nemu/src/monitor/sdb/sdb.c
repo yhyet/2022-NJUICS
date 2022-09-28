@@ -156,11 +156,11 @@ static int cmd_x(char *args) {
 }
 
 static int cmd_p(char *args) {
-  char *arg = strtok(NULL," ");
+  //char *arg = strtok(NULL," ");
   bool *success=0;
   //bool success0=true;
   //success=success0;
-  printf("0x%08x\n",expr(arg,success));
+  printf("0x%08x\n",expr(args,success));
 
   return 0;
 }
