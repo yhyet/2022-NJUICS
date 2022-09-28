@@ -181,9 +181,9 @@ static int op_find(int p,int q){
         }
         }
       }
-    if(i==p && mem!=0)
-      return mem;
     }
+    if(mem!=0)
+      return mem;
     assert(0);
   }
 
