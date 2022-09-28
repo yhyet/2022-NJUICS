@@ -174,9 +174,11 @@ static int op_find(int p,int q){
       else{
         if(tokens[i].type=='+'||tokens[i].type=='-')
           return i;
-        else if(two_flag==0){
+        else{ 
+          if(two_flag==0){
           two_flag=1;
           mem=i;}
+        }
         }
       }
     if(i==p && mem!=0)
