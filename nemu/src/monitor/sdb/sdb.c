@@ -160,7 +160,7 @@ static int cmd_p(char *args) {
   bool *success=0;
   //bool success0=true;
   //success=success0;
-  printf("0x%08x",expr(arg,success));
+  printf("0x%08x\n",expr(arg,success));
 
   return 0;
 }
