@@ -96,7 +96,7 @@ static bool make_token(char *e) {
         Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
-        //position += substr_len;
+        position += substr_len;
 
         /* TODO: Now a new token is recognized with rules[i]. Add codes
          * to record the token in the array `tokens'. For certain types
@@ -111,12 +111,12 @@ static bool make_token(char *e) {
 	  case '/': tokens[nr_token].type='/';nr_token++;break;
 	  case '(': tokens[nr_token].type='(';nr_token++;break;
 	  case ')': tokens[nr_token].type=')';nr_token++;break;
-	  case TK_NUMBER: tokens[nr_token].type=TK_NUMBER;strcpy(tokens[nr_token].str,e+position);/*printf("%s",tokens[nr_token].str);*/nr_token++;break;
+	  case TK_NUMBER: tokens[nr_token].type=TK_NUMBER;strcpy(tokens[nr_token].str,e+position-substr_len);/*printf("%s",tokens[nr_token].str);*/nr_token++;break;
 	  case TK_EQ: tokens[nr_token].type=TK_EQ;nr_token++;break;
           default: assert(0);
         }
         assert(e!=NULL);
-        position += substr_len;
+        
         break;
       }
     }
@@ -190,8 +190,8 @@ static int op_find(int p,int q){
   }
 
 static word_t eval(int p,int q){
-  printf("nrtoken=%d\n",nr_token);
-  printf("01\n");
+  //printf("nrtoken=%d\n",nr_token);
+  //printf("01\n");
   if (p>q){
     printf("%d,%d\n",p,q);
     assert(0);
