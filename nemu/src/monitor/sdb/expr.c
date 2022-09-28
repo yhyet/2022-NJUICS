@@ -44,7 +44,7 @@ static struct rule {
   {"/",'/'},
   {"\\(",'('},
   {"\\)",')'},
-  {"(^[0-9]|[1-9][0-9]+)$",TK_NUMBER},
+  {"^[0-9]|[1-9][0-9]+$",TK_NUMBER},
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -55,7 +55,7 @@ static regex_t re[NR_REGEX] = {};
  * Therefore we compile them only once before any usage.
  */
 void init_regex() {
-  printf("1\n");
+  //printf("1\n");
   int i;
   char error_msg[128];
   int ret;
