@@ -190,7 +190,7 @@ static int op_find(int p,int q){
   }
 
 static word_t eval(int p,int q){
-  printf("01");
+  printf("01\n");
   if (p>q){
     printf("%d,%d\n",p,q);
     assert(0);
@@ -207,7 +207,7 @@ static word_t eval(int p,int q){
     //printf("%d\n",nr_token);
     //printf("%d,%d\n",p,q);
     int op=op_find(p,q);
-    //printf("%d\n",op);
+    printf("op=%d\n",op);
     int val1=eval(p,op-1);
     int val2=eval(op+1,q);
 
