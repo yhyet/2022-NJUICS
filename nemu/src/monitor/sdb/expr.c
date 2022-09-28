@@ -110,7 +110,7 @@ static bool make_token(char *e) {
 	  case ')': tokens[nr_token].type=')';nr_token++;break;
 	  case TK_NUMBER: tokens[nr_token].type=TK_NUMBER;strcpy(tokens[nr_token].str,e+position);printf("%s",tokens[nr_token].str);nr_token++;break;
 	  case TK_EQ: tokens[nr_token].type=TK_EQ;nr_token++;break;
-          default: TODO();
+          default: assert(0);
         }
         assert(e!=NULL);
         position += substr_len;
@@ -127,14 +127,88 @@ static bool make_token(char *e) {
   return true;
 }
 
+static bool check_parentheses(int p,int q);
+static int op_find(int p,int q);
+static word_t eval(int p,int q);
+
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
+  return eval(0,nr_token);
+  //word_t answer=0;
+  //sscanf(ans,"%08x",&answer);
+}
 
-  /* TODO: Insert codes to evaluate the expression. */
-  TODO();
-
+static bool check_parentheses(int p,int q){
+  if (tokens[p].type=='(' && tokens[q].type==')'){
+    int num=0;
+    for(int i=p+1;i<q-1;i++){
+      if(tokens[i].type=='(')
+        num++;
+      else if (tokens[i].type==')')
+        {num--;
+        if (num<0)
+        return 0;}
+    }
+    if (num==0)
+      return 1;
+  }
   return 0;
+}
+
+static int op_find(int p,int q){
+  int parentheses_right=0;
+  int two_flag=0;
+  int mem=0;
+  for(int i=q;i>p;i--){
+    if(tokens[i].type==')')
+        parentheses_right++;
+    else if (tokens[i].type=='(')
+      parentheses_right--;
+    else if (tokens[i].type=='+' ||tokens[i].type=='-'||tokens[i].type=='*'||tokens[i].type=='/'){
+      if (parentheses_right>0)
+        continue;
+      else{
+        if(tokens[i].type=='+'||tokens[i].type=='-')
+          return i;
+        else if(two_flag==0){
+          two_flag=1;
+          mem=i;}
+        }
+      }
+    if(i==p && mem!=0)
+      return mem;
+    }
+    assert(0);
+  }
+  
+static word_t eval(int p,int q){
+  if (p>q){
+    assert(0);
+  }
+  else if (p==q){
+    int N=0;
+    sscanf(tokens[p].str,"%d",&N);
+    return N;
+  }
+  else if (check_parentheses(p,q)==true){
+    return eval(p+1,q-1);
+  }
+  else{
+    int op=op_find(p,q);
+    int val1=eval(p,op-1);
+    int val2=eval(op+1,q);
+
+    switch (tokens[op].type)
+    {
+    case '+':return val1+val2;
+    case '-':return val1-val2;
+    case '*':return val1*val2;
+    case '/':return val1/val2;
+    default:assert(0);
+    }
+
+  }
 }
