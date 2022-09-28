@@ -190,6 +190,7 @@ static int op_find(int p,int q){
   }
 
 static word_t eval(int p,int q){
+  printf("01");
   if (p>q){
     printf("%d,%d\n",p,q);
     assert(0);
