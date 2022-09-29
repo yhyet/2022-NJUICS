@@ -170,7 +170,7 @@ static int op_find(int p,int q){
   int parentheses_right=0;
   int two_flag=0;
   int mem=0;
-  for(int i=q;i>p;i--){
+  for(int i=q;i>=p;i--){
     if(tokens[i].type==')')
         parentheses_right++;
     else if (tokens[i].type=='(')
