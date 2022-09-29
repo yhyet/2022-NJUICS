@@ -148,7 +148,7 @@ word_t expr(char *e, bool *success) {
 }
 
 static bool check_parentheses(int p,int q){
-  printf("p,q,token0=%d,%d,%c",p,q,tokens[0].type);
+  printf("p,q,token0=%d,%d,%c",p,q,tokens[3].type);
   if (tokens[p].type=='(' && tokens[q].type==')'){
     int num=0;
     for(int i=p+1;i<=q-1;i++){
