@@ -148,7 +148,7 @@ word_t expr(char *e, bool *success) {
 }
 
 static bool check_parentheses(int p,int q){
-  printf("p,q,token0=%d,%d,%c",p,q,tokens[3].type);
+  printf("p,q,token3=%d,%d,%c\n",p,q,tokens[3].type);
   if (tokens[p].type=='(' && tokens[q].type==')'){
     int num=0;
     for(int i=p+1;i<=q-1;i++){
@@ -156,7 +156,7 @@ static bool check_parentheses(int p,int q){
       if(tokens[i].type=='(')
         num++;
       else if (tokens[i].type==')'){
-        num--;
+        num=num-1;
         if (num<0)
         assert(0);
         return 0;}
