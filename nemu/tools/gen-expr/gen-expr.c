@@ -68,6 +68,8 @@ static void gen_rand_expr() {
     //case 2:gen(' ');gen_rand_expr();break;
     default: gen_rand_expr(); gen_rand_op(); gen_rand_expr(); break;
   }
+  //buf[0] = '\0';
+
 }
 
 int main(int argc, char *argv[]) {
@@ -79,6 +81,9 @@ int main(int argc, char *argv[]) {
   }
   int i;
   for (i = 0; i < loop; i ++) {
+    //printf("loop=%d\n",loop);
+    buf[0] = '\0';
+
     gen_rand_expr();
 
     sprintf(code_buf, code_format, buf);
@@ -94,11 +99,13 @@ int main(int argc, char *argv[]) {
     fp = popen("/tmp/.expr", "r");
     assert(fp != NULL);
 
-    int result;
+    int result=0;
     fscanf(fp, "%d", &result);
     pclose(fp);
 
     printf("%u %s\n", result, buf);
+    //buf[0] = '\0';
+
   }
   return 0;
 }
