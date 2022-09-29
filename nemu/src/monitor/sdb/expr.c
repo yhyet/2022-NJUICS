@@ -159,7 +159,6 @@ static bool check_parentheses(int p,int q){
         num=num-1;
         printf("yhy");
         if (num<0)
-        assert(0);
         return 0;}
       printf("number=%d\n",num);
     }
