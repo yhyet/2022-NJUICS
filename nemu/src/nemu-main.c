@@ -28,6 +28,7 @@ int main(int argc, char *argv[]) {
   init_monitor(argc, argv);
 #endif
 
+  //./gen-expr 10000 > input
   /* Start engine. */
   engine_start();
 
