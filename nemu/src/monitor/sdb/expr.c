@@ -157,6 +157,7 @@ static bool check_parentheses(int p,int q){
         num++;
       else if (tokens[i].type==')'){
         num=num-1;
+        printf("yhy");
         if (num<0)
         assert(0);
         return 0;}
