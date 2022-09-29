@@ -150,7 +150,7 @@ word_t expr(char *e, bool *success) {
 static bool check_parentheses(int p,int q){
   if (tokens[p].type=='(' && tokens[q].type==')'){
     int num=0;
-    for(int i=p+1;i<=q;i++){
+    for(int i=p+1;i<=q-1;i++){
       
       if(tokens[i].type=='(')
         num++;
