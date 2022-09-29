@@ -50,10 +50,10 @@ void gen_rand_op(){
   return;
 }
 void gen_num(){
-  int num =rand()%100;
+  int num =rand()%100+1;
   /*char s[1]={num};
   strcat(buf,s);*/
-  char s[100];
+  char s[102];
   sprintf(s,"%d",num);
   strcat(buf,s);
   //printf("%d\n",num);
