@@ -210,7 +210,7 @@ static word_t eval(int p,int q){
   }
   else{
     
-    //printf("%d,%d\n",p,q);
+    printf("%d,%d\n",p,q);
     int op=op_find(p,q);
     printf("op=%d\n",op);
     int val1=eval(p,op-1);
