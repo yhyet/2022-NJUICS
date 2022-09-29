@@ -205,7 +205,7 @@ static word_t eval(int p,int q){
     sscanf(tokens[p].str,"%d",&N);
     return N;
   }
-  else if (check_parentheses(p,q)==true){
+  else if (check_parentheses(p,q)==1){
     return eval(p+1,q-1);
   }
   else{
