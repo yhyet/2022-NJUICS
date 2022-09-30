@@ -21,7 +21,7 @@
 #include <regex.h>
 #include <string.h>
 enum {
-  TK_NOTYPE = 256, TK_EQ,TK_NUMBER,TK_HEXNUM,TK_REGNAME,TK_NOTEQ,TK_AND,TK_POINT,
+  TK_NOTYPE = 256, TK_EQ,TK_NUMBER,TK_HEXNUM,TK_REGNAME,TK_NOTEQ,TK_AND,TK_DEREF,TK_NEG,
 
   /* TODO: Add more token types */
 
@@ -222,7 +222,7 @@ static word_t eval(int p,int q){
     {
     case TK_NUMBER: sscanf(tokens[p].str,"%d",&N);break;
     case TK_HEXNUM: sscanf(tokens[p].str,"%x",&N);break;
-    case TK_REGNAME: N=isa_reg_str2val(tokens[p].str,success);break;
+    case TK_REGNAME: printf("%s",tokens[p].str);N=isa_reg_str2val(tokens[p].str,success);break;
     default:
       break;
     }
@@ -233,6 +233,9 @@ static word_t eval(int p,int q){
   }
   else{
     
+
+
+
     printf("%d,%d\n",p,q);
     int op=op_find(p,q);
     printf("op=%d\n",op);
