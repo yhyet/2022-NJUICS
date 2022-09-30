@@ -162,12 +162,23 @@ word_t expr(char *e, bool *success) {
 
   for (int i = 0; i < nr_token; i++)
   {
-    if (tokens[i].type=='-' && (i==0 || certain_type(tokens[i-1].type)))
+    if (tokens[i].type=='-' && i==0)
     {
       tokens[i].type=TK_NEG;
       //fuhao
     }
-    if (tokens[i].type=='*' && (i==0 || certain_type(tokens[i-1].type)))
+    else if (tokens[i].type=='*' && i==0)
+    {
+      tokens[i].type=TK_DEREF;
+    }
+      //jieyinyong
+    
+    else if (tokens[i].type=='-' && certain_type(tokens[i-1].type))
+    {
+      tokens[i].type=TK_NEG;
+      //fuhao
+    }
+    else if (tokens[i].type=='*' && certain_type(tokens[i-1].type))
     {
       tokens[i].type=TK_DEREF;
     }
