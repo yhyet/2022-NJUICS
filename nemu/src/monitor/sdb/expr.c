@@ -275,8 +275,8 @@ static int op_find(int p,int q){
   int parentheses=0;
   for (int i = q; i >= p; i--)
   {
-    if (tokens[i].type=='(') {parentheses++;continue;}
-    if (tokens[i].type==')') {parentheses--;continue;}
+    if (tokens[i].type=='(') {parentheses--;continue;}
+    if (tokens[i].type==')') {parentheses++;continue;}
     if (parentheses<0) assert(0);
     
     if(parentheses==0){
