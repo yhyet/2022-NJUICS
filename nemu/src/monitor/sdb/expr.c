@@ -44,7 +44,7 @@ static struct rule {
   {"/",'/'},
   {"\\(",'('},
   {"\\)",')'},
-  {"\\[$rsgta0-9]{2,3}",TK_REGNAME},
+  {"\\[$rsgta]{2,3}",TK_REGNAME},
   {"0x[0-9,a-f]+",TK_HEXNUM},
   {"[0-9]+",TK_NUMBER},
   {"!=",TK_NOTEQ},
