@@ -272,12 +272,19 @@ static int priority(int p){
 static int op_find(int p,int q){
   int place[1000]={0};
   int j=0;
+  int parentheses=0;
   for (int i = q; i >= p; i--)
   {
-    if (tokens[i].type!='('&& tokens[i].type!=')'&& tokens[i].type!=TK_REGNAME && tokens[i].type!=TK_HEXNUM && tokens[i].type!=TK_NUMBER)
-    {
-      place[j]=i;
-      j++; 
+    if (tokens[i].type=='(') {parentheses++;continue;}
+    if (tokens[i].type==')') {parentheses--;continue;}
+    if (parentheses<0) assert(0);
+    
+    if(parentheses==0){
+      if (tokens[i].type!=TK_REGNAME && tokens[i].type!=TK_HEXNUM && tokens[i].type!=TK_NUMBER)
+      {
+        place[j]=i;
+        j++; 
+    }
     }
   //printf("%d\n",place[0]);
   }
