@@ -291,11 +291,21 @@ static int op_find(int p,int q){
   }
   int max_priority=0;
   int max_token=0;
+  int max_place=0;
   for (int i = 0; i < j; i++)
   {
       if (priority(place[i])>max_priority) 
+      max_place=i;
       max_token=place[i];
       max_priority=priority(max_token);
+  }
+  if (max_priority==2){
+    while (max_place>=0 && priority(place[max_place])==2)
+    {
+      max_place--;
+      max_token=place[max_place-1];
+    }
+    
   }
     return max_token;
 }
@@ -330,7 +340,7 @@ static word_t eval(int p,int q){
     //printf("p=%d,q=%d\n",p,q);
     int op=op_find(p,q);
     if (tokens[op].type==TK_DEREF){
-      printf("point\n");
+      //printf("point\n");
       word_t val=eval(op+1,q);
       return vaddr_read(val,4);
       //return *val;
