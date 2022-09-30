@@ -250,6 +250,7 @@ static int op_find(int p,int q){
     assert(0);
   }*/
 static int priority(int p){
+  printf("xx");
   printf("%c\n",tokens[p].type);
   switch (tokens[p].type)
   {  
