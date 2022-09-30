@@ -251,7 +251,7 @@ static int op_find(int p,int q){
   }*/
 static int priority(int p){
   //printf("xx");
-  printf("%d\n",p);
+  //printf("%d\n",p);
   switch (tokens[p].type)
   {  
   case '+':return 4;
@@ -297,7 +297,7 @@ static word_t eval(int p,int q){
   //printf("nrtoken=%d\n",nr_token);
   //printf("01\n");
   if (p>q){
-    printf("%d,%d\n",p,q);
+    printf("p,q=%d,%d\n",p,q);
     assert(0);
   }
   else if (p==q){
