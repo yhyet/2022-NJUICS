@@ -20,6 +20,7 @@
  */
 #include <regex.h>
 #include <string.h>
+#include <memory/vaddr.h>
 enum {
   TK_NOTYPE = 256, TK_EQ,TK_NUMBER,TK_HEXNUM,TK_REGNAME,TK_NOTEQ,TK_AND,TK_DEREF,TK_NEG,
 
@@ -220,7 +221,7 @@ static bool check_parentheses(int p,int q){
   //assert(0);
   return 0;
 }
-
+/*
 static int op_find(int p,int q){
   int parentheses_right=0;
   int two_flag=0;
@@ -247,7 +248,48 @@ static int op_find(int p,int q){
     if(mem!=0)
       return mem;
     assert(0);
+  }*/
+static int priority(int p){
+  switch (tokens[p].type)
+  {  
+  case '+':return 4;
+  case TK_EQ:return 7;
+  case '-':return 4; 
+  case '*':return 3; 
+  case '/':return 3; 
+  case TK_NOTEQ:return 7; 
+  case TK_AND:return 11;
+  case TK_DEREF:return 2;
+  case TK_NEG:return 2; 
+  default:
+  assert(0);
+    break;
   }
+}
+
+static int op_find(int p,int q){
+  int place[1000]={0};
+  int j=0;
+  for (int i = q; i >= p; i--)
+  {
+    if (tokens[i].type!='('&& tokens[i].type!=')'&& tokens[i].type!=TK_REGNAME && tokens[i].type!=TK_HEXNUM && tokens[i].type!=TK_NUMBER)
+    {
+      place[j]=i;
+      j++; 
+    }
+
+  }
+  int max_priority=0;
+  int max_token=0;
+  for (int i = 0; i < j; i++)
+  {
+      if (priority(tokens[place[i]].type)>max_priority) 
+      max_token=place[i];
+      max_priority=priority(tokens[max_token].type);
+  }
+    return max_token;
+}
+
 
 static word_t eval(int p,int q){
   //printf("nrtoken=%d\n",nr_token);
@@ -261,7 +303,7 @@ static word_t eval(int p,int q){
     bool* success=0;
     switch (tokens[p].type)
     {
-    case TK_NUMBER: sscanf(tokens[p].str,"%d",&N);break;
+    case TK_NUMBER: sscanf(tokens[p].str,"%u",&N);break;
     case TK_HEXNUM: sscanf(tokens[p].str,"%x",&N);break;
     case TK_REGNAME: /*printf("%s",tokens[p].str);*/N=isa_reg_str2val(tokens[p].str,success);break;
     default:
@@ -274,23 +316,33 @@ static word_t eval(int p,int q){
   }
   else{
     
-
-
-
-    printf("p=%d,q=%d\n",p,q);
+    //printf("p=%d,q=%d\n",p,q);
     int op=op_find(p,q);
-    printf("op=%d\n",op);
-    int val1=eval(p,op-1);
-    int val2=eval(op+1,q);
-
-    switch (tokens[op].type)
-    {
-    case '+':return val1+val2;
-    case '-':return val1-val2;
-    case '*':return val1*val2;
-    case '/':return val1/val2;
-    default:assert(0);
+    if (tokens[op].type==TK_DEREF){
+      word_t val=eval(op+1,q);
+      return vaddr_read(val,4);
+      //return *val;
     }
+    else if (tokens[op].type==TK_NEG){
+      int val=eval(op+1,q);
+      return -val;
+    }
+    else{
+      //printf("op=%d\n",op);
+      word_t val1=eval(p,op-1);
+      word_t val2=eval(op+1,q);
 
+      switch (tokens[op].type)
+      {
+      case '+':return val1+val2;
+      case '-':return val1-val2;
+      case '*':return val1*val2;
+      case '/':return val1/val2;
+      case TK_EQ:return val1==val2;
+      case TK_NOTEQ:return val1!=val2;
+      case TK_AND:return val1&&val2;
+      default:assert(0);
+    }
+    }
   }
 }
