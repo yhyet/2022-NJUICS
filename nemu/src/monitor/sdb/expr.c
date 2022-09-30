@@ -305,22 +305,22 @@ static int op_find(int p,int q){
   }
   int max_priority=0;
   int max_token=0;
-  int max_place=0;
+  //int max_place=0;
   for (int i = 0; i < j; i++)
   {
       if (priority(place[i])>max_priority) 
-      max_place=i;
+      //max_place=i;
       max_token=place[i];
       max_priority=priority(max_token);
   }
-  if (max_priority==2){
+/*  if (max_priority==2){
     while (max_place>0 && priority(place[max_place])==2)
     {
       max_place--;
       max_token=place[max_place];
     }
     
-  }
+  }*/
     return max_token;
 }
 
