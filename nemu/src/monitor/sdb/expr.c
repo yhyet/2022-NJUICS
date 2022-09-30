@@ -311,10 +311,10 @@ static int op_find(int p,int q){
       max_priority=priority(max_token);
   }
   if (max_priority==2){
-    while (max_place>=0 && priority(place[max_place])==2)
+    while (max_place>0 && priority(place[max_place])==2)
     {
       max_place--;
-      max_token=place[max_place-1];
+      max_token=place[max_place];
     }
     
   }
