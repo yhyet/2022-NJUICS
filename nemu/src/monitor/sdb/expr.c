@@ -14,7 +14,7 @@
 ***************************************************************************************/
 
 #include <isa.h>
-
+//#include <reg.h>
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
@@ -120,7 +120,7 @@ static bool make_token(char *e) {
 	  case '(': tokens[nr_token].type='(';nr_token++;break;
 	  case ')': tokens[nr_token].type=')';nr_token++;break;
     case TK_REGNAME: tokens[nr_token].type=TK_REGNAME;strcpy(tokens[nr_token].str,e+position-substr_len);nr_token++;break;
-    case TK_HEXNUM:	tokens[nr_token].type=TK_HEXNUM;strcpy(tokens[nr_token].str,e+position-substr_len+2);printf("%s\n",tokens[nr_token].str);nr_token++;break;
+    case TK_HEXNUM:	tokens[nr_token].type=TK_HEXNUM;strcpy(tokens[nr_token].str,e+position-substr_len+2);/*printf("%s\n",tokens[nr_token].str);*/nr_token++;break;
 	  case TK_NUMBER: tokens[nr_token].type=TK_NUMBER;strcpy(tokens[nr_token].str,e+position-substr_len);nr_token++;break;
 	  case TK_EQ: tokens[nr_token].type=TK_EQ;nr_token++;break;
     case TK_NOTEQ: tokens[nr_token].type=TK_NOTEQ;nr_token++;break;
@@ -145,6 +145,7 @@ static bool make_token(char *e) {
 static bool check_parentheses(int p,int q);
 static int op_find(int p,int q);
 static word_t eval(int p,int q);
+word_t isa_reg_str2val(const char *s,bool *success);
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -216,7 +217,18 @@ static word_t eval(int p,int q){
   }
   else if (p==q){
     word_t N=0;
-    sscanf(tokens[p].str,"%d",&N);
+    switch (tokens[p].type)
+    {
+    case TK_NUMBER: sscanf(tokens[p].str,"%d",&N);break;
+    case TK_HEXNUM: sscanf(tokens[p].str,"%x",&N);break;
+    /*case TK_REGNAME: {
+      
+      sscanf(isa_reg_str2val(tokens[p].str,0),"%x",&N);
+      break;
+    }*/
+    default:
+      break;
+    }
     return N;
   }
   else if (check_parentheses(p,q)==1){
