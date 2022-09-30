@@ -329,6 +329,7 @@ static word_t eval(int p,int q){
     //printf("p=%d,q=%d\n",p,q);
     int op=op_find(p,q);
     if (tokens[op].type==TK_DEREF){
+      printf("point\n");
       word_t val=eval(op+1,q);
       return vaddr_read(val,4);
       //return *val;
