@@ -190,6 +190,7 @@ word_t expr(char *e, bool *success) {
 }
 
 static bool certain_type(int t){
+  printf("%c\n",t);
   //fuhao--true
   switch (t)
   {
