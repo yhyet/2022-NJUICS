@@ -143,20 +143,61 @@ static bool make_token(char *e) {
 }
 
 static bool check_parentheses(int p,int q);
+
 static int op_find(int p,int q);
+
 static word_t eval(int p,int q);
+
 word_t isa_reg_str2val(const char *s,bool *success);
+
+static bool certain_type(int t);
+
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
+
+  for (int i = 0; i < nr_token; i++)
+  {
+    if (tokens[i].type=='-' && (i==0 || certain_type(tokens[i-1].type)))
+    {
+      tokens[i].type=TK_NEG;
+      //fuhao
+    if (tokens[i].type=='*' && (i==0 || certain_type(tokens[i-1].type)))
+    {
+      tokens[i].type=TK_DEREF;
+    }
+      //jieyinyong
+  }
+  }
   //*success=true;
   return eval(0,nr_token-1);
-  //word_t answer=0;
-  //sscanf(ans,"%08x",&answer);
 }
+
+static bool certain_type(int t){
+  //fuhao--true
+  switch (t)
+  {
+  case '+':return true;
+  case TK_EQ:return true;
+  case '-':return true; 
+  case '*':return true; 
+  case '/':return true; 
+  case '(':return true; 
+  case ')':return false; 
+  case TK_REGNAME:return false; 
+  case TK_HEXNUM:return false; 
+  case TK_NUMBER:return false; 
+  case TK_NOTEQ:return true; 
+  case TK_AND:return true; 
+  default:
+    assert(0);
+    break;
+  }
+} 
+
 
 static bool check_parentheses(int p,int q){
   //printf("p,q,token3=%d,%d,%c\n",p,q,tokens[3].type);
