@@ -217,15 +217,12 @@ static word_t eval(int p,int q){
   }
   else if (p==q){
     word_t N=0;
+    bool* success=0;
     switch (tokens[p].type)
     {
     case TK_NUMBER: sscanf(tokens[p].str,"%d",&N);break;
     case TK_HEXNUM: sscanf(tokens[p].str,"%x",&N);break;
-    /*case TK_REGNAME: {
-      
-      sscanf(isa_reg_str2val(tokens[p].str,0),"%x",&N);
-      break;
-    }*/
+    case TK_REGNAME: N=isa_reg_str2val(tokens[p].str,success);break;
     default:
       break;
     }
