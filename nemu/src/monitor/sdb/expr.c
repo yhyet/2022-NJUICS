@@ -222,7 +222,7 @@ static word_t eval(int p,int q){
     {
     case TK_NUMBER: sscanf(tokens[p].str,"%d",&N);break;
     case TK_HEXNUM: sscanf(tokens[p].str,"%x",&N);break;
-    case TK_REGNAME: printf("%s",tokens[p].str);N=isa_reg_str2val(tokens[p].str,success);break;
+    case TK_REGNAME: /*printf("%s",tokens[p].str);*/N=isa_reg_str2val(tokens[p].str,success);break;
     default:
       break;
     }
