@@ -277,7 +277,7 @@ static int op_find(int p,int q){
       place[j]=i;
       j++; 
     }
-
+  printf("%d\n",place[0]);
   }
   int max_priority=0;
   int max_token=0;
