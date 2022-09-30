@@ -285,9 +285,9 @@ static int op_find(int p,int q){
   int max_token=0;
   for (int i = 0; i < j; i++)
   {
-      if (priority(tokens[place[i]].type)>max_priority) 
+      if (priority(place[i])>max_priority) 
       max_token=place[i];
-      max_priority=priority(tokens[max_token].type);
+      max_priority=priority(max_token);
   }
     return max_token;
 }
