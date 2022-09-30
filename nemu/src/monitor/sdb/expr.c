@@ -47,7 +47,7 @@ static struct rule {
   {"\\)",')'},
   {"0x[0-9,a-f]+",TK_HEXNUM},
   {"[0-9]+",TK_NUMBER},
-  {"[$rsgta0-9]{2,3}",TK_REGNAME},
+  {"$[$rsgta0-9]{2,3}",TK_REGNAME},
   {"!=",TK_NOTEQ},
   {"&&",TK_AND},
 
@@ -120,7 +120,7 @@ static bool make_token(char *e) {
 	  case '/': tokens[nr_token].type='/';nr_token++;break;
 	  case '(': tokens[nr_token].type='(';nr_token++;break;
 	  case ')': tokens[nr_token].type=')';nr_token++;break;
-    case TK_REGNAME: tokens[nr_token].type=TK_REGNAME;strcpy(tokens[nr_token].str,e+position-substr_len);nr_token++;break;
+    case TK_REGNAME: tokens[nr_token].type=TK_REGNAME;strcpy(tokens[nr_token].str,e+position-substr_len+1);nr_token++;break;
     case TK_HEXNUM:	tokens[nr_token].type=TK_HEXNUM;strcpy(tokens[nr_token].str,e+position-substr_len+2);/*printf("%s\n",tokens[nr_token].str);*/nr_token++;break;
 	  case TK_NUMBER: tokens[nr_token].type=TK_NUMBER;strcpy(tokens[nr_token].str,e+position-substr_len);nr_token++;break;
 	  case TK_EQ: tokens[nr_token].type=TK_EQ;nr_token++;break;
@@ -305,22 +305,22 @@ static int op_find(int p,int q){
   }
   int max_priority=0;
   int max_token=0;
-  //int max_place=0;
+  int max_place=0;
   for (int i = 0; i < j; i++)
   {
       if (priority(place[i])>max_priority) 
-      //max_place=i;
+      max_place=i;
       max_token=place[i];
       max_priority=priority(max_token);
   }
-/*  if (max_priority==2){
+  if (max_priority==2){
     while (max_place>0 && priority(place[max_place])==2)
     {
       max_place--;
       max_token=place[max_place];
     }
     
-  }*/
+  }
     return max_token;
 }
 
