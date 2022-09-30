@@ -206,6 +206,8 @@ static bool certain_type(int t){
   case TK_NUMBER:return false; 
   case TK_NOTEQ:return true; 
   case TK_AND:return true; 
+  case TK_DEREF:return true;
+  case TK_NEG:return true;
   default:
     assert(0);
     break;
