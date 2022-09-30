@@ -166,12 +166,13 @@ word_t expr(char *e, bool *success) {
     {
       tokens[i].type=TK_NEG;
       //fuhao
+    }
     if (tokens[i].type=='*' && (i==0 || certain_type(tokens[i-1].type)))
     {
       tokens[i].type=TK_DEREF;
     }
       //jieyinyong
-  }
+  
   }
   //*success=true;
   return eval(0,nr_token-1);
