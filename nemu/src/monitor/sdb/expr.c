@@ -184,6 +184,7 @@ word_t expr(char *e, bool *success) {
       //jieyinyong
   
   }
+  printf("t0=%d\n",tokens[0].type);
   //*success=true;
   return eval(0,nr_token-1);
 }
@@ -284,6 +285,7 @@ static int priority(int p){
 }
 
 static int op_find(int p,int q){
+  
   int place[1000]={0};
   int j=0;
   int parentheses=0;
