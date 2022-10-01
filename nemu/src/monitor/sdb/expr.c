@@ -279,8 +279,7 @@ static int priority(int p){
   case TK_AND:return 11;
   case TK_DEREF:return 2;
   case TK_NEG:return 2; 
-  default:
-  assert(0);
+  default:return 0;
     break;
   }
 }
