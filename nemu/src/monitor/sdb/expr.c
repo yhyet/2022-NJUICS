@@ -111,7 +111,7 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-        printf("substr_len=%d",substr_len);
+        printf("substr_len=%d\n",substr_len);
         switch (rules[i].token_type) {
 	  case TK_NOTYPE: /*printf("space");*/break;
 	  case '+': tokens[nr_token].type='+';nr_token++;break;
