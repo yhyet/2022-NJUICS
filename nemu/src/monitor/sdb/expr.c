@@ -344,6 +344,7 @@ static word_t eval(int p,int q){
     default:
       break;
     }
+    printf("%u\n",N);
     return N;
   }
   else if (check_parentheses(p,q)==1){
