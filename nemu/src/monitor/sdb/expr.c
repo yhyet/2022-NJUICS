@@ -319,6 +319,7 @@ static int op_find(int p,int q){
     {
       max_place++;
       max_token=place[max_place];
+      if (max_place==j-1) break;
     }
     
   }
