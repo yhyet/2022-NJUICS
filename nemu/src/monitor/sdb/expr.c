@@ -314,6 +314,7 @@ static int op_find(int p,int q){
       max_token=place[i];
       max_priority=priority(max_token);}
   }
+  printf("maxprio=%d\n",max_priority);
   if (max_priority==2){
     while (max_place>0 && priority(place[max_place])==2)
     {
