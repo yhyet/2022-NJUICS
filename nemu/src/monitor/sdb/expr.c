@@ -190,7 +190,7 @@ word_t expr(char *e, bool *success) {
 }
 
 static bool certain_type(int t){
-  printf("%c\n",t);
+  //printf("%c\n",t);
   //fuhao--true
   switch (t)
   {
@@ -326,9 +326,9 @@ static int op_find(int p,int q){
 
 
 static word_t eval(int p,int q){
-  printf("nrtoken=%d\n",nr_token);
+  //printf("nrtoken=%d\n",nr_token);
   //printf("01\n");
-  printf("p,q=%d,%d\n",p,q);
+  //printf("p,q=%d,%d\n",p,q);
   if (p>q){
     printf("error--p,q=%d,%d\n",p,q);
     assert(0);
