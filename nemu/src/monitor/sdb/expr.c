@@ -322,7 +322,7 @@ static int op_find(int p,int q){
     }
     
   }
-  printf("%d\n",place[0]);
+  printf("%d\n",max_token);
 
     return max_token;
 }
