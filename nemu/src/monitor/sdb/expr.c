@@ -120,9 +120,9 @@ static bool make_token(char *e) {
 	  case '/': tokens[nr_token].type='/';nr_token++;break;
 	  case '(': tokens[nr_token].type='(';nr_token++;break;
 	  case ')': tokens[nr_token].type=')';nr_token++;break;
-    case TK_REGNAME: tokens[nr_token].type=TK_REGNAME;strncpy(tokens[nr_token].str,e+position-substr_len+1,substr_len);nr_token++;break;
-    case TK_HEXNUM:	tokens[nr_token].type=TK_HEXNUM;strncpy(tokens[nr_token].str,e+position-substr_len+2,substr_len-1);printf("%s\n",tokens[nr_token].str);nr_token++;break;
-	  case TK_NUMBER: tokens[nr_token].type=TK_NUMBER;strncpy(tokens[nr_token].str,e+position-substr_len,substr_len+1);nr_token++;break;
+    case TK_REGNAME: tokens[nr_token].type=TK_REGNAME;strncpy(tokens[nr_token].str,e+position-substr_len+1,substr_len-1);tokens[nr_token].str[substr_len-1]='\0';nr_token++;break;
+    case TK_HEXNUM:	tokens[nr_token].type=TK_HEXNUM;strncpy(tokens[nr_token].str,e+position-substr_len+2,substr_len-2);tokens[nr_token].str[substr_len-2]='\0';printf("%s\n",tokens[nr_token].str);nr_token++;break;
+	  case TK_NUMBER: tokens[nr_token].type=TK_NUMBER;strncpy(tokens[nr_token].str,e+position-substr_len,substr_len);tokens[nr_token].str[substr_len]='\0';nr_token++;break;
 	  case TK_EQ: tokens[nr_token].type=TK_EQ;nr_token++;break;
     case TK_NOTEQ: tokens[nr_token].type=TK_NOTEQ;nr_token++;break;
     case TK_AND: tokens[nr_token].type=TK_AND;nr_token++;break;
@@ -142,7 +142,6 @@ static bool make_token(char *e) {
 
   return true;
 }
-
 static bool check_parentheses(int p,int q);
 
 static int op_find(int p,int q);
