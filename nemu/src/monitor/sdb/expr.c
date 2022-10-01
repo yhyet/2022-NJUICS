@@ -301,7 +301,7 @@ static int op_find(int p,int q){
         j++; 
     }
     }
-  //printf("%d\n",place[0]);
+  printf("%d\n",place[0]);
   }
   int max_priority=0;
   int max_token=0;
