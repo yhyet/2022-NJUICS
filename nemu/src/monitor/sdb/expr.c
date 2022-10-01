@@ -338,9 +338,9 @@ static word_t eval(int p,int q){
     bool* success=0;
     switch (tokens[p].type)
     {
-    case TK_NUMBER: printf("num=%s\n",tokens[p].str);sscanf(tokens[p].str,"%u",&N);break;
-    case TK_HEXNUM: printf("hex=%s\n",tokens[p].str);sscanf(tokens[p].str,"%x",&N);break;
-    case TK_REGNAME: printf("reg=%s\n",tokens[p].str);N=isa_reg_str2val(tokens[p].str,success);break;
+    case TK_NUMBER: /*printf("num=%s\n",tokens[p].str)*/;sscanf(tokens[p].str,"%u",&N);break;
+    case TK_HEXNUM: /*printf("hex=%s\n",tokens[p].str)*/;sscanf(tokens[p].str,"%x",&N);break;
+    case TK_REGNAME: /*printf("reg=%s\n",tokens[p].str)*/;N=isa_reg_str2val(tokens[p].str,success);break;
     default:
       break;
     }
