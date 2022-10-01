@@ -324,7 +324,7 @@ static int op_find(int p,int q){
     }
     
   }
-  printf("%d\n",max_token);
+  printf("maxtoken=%d\n",max_token);
 
     return max_token;
 }
