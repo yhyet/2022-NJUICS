@@ -313,8 +313,8 @@ static int op_find(int p,int q){
       max_token=place[i];
       max_priority=priority(max_token);}
   }
-  printf("maxprio=%d\n",max_priority);
-  printf("maxplace=%d\n",max_place);
+  //printf("maxprio=%d\n",max_priority);
+  //printf("maxplace=%d\n",max_place);
   if (max_priority==2){
     while (j!=1 && priority(place[max_place])==2)
     {
@@ -324,7 +324,7 @@ static int op_find(int p,int q){
     }
     
   }
-  printf("maxtoken=%d\n",max_token);
+  //printf("maxtoken=%d\n",max_token);
 
     return max_token;
 }
