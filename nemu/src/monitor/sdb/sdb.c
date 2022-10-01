@@ -25,7 +25,8 @@ static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
-void new_wp();
+void new_wp(char* exp);
+void free_wp(int N);
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
   static char *line_read = NULL;
@@ -167,12 +168,17 @@ static int cmd_p(char *args) {
 }
 
 static int cmd_w(char *args) {
-  new_wp();
+  char *arg = strtok(NULL, " ");
+  new_wp(arg);
   return 0;
 }
 
 static int cmd_d(char *args) {
-return 0;
+  int N=0;
+  char *arg = strtok(NULL, " ");
+  sscanf(arg,"%d",&N);
+  free_wp(N);
+  return 0;
 }
 
 void sdb_set_batch_mode() {

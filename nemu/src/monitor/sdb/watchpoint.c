@@ -64,7 +64,13 @@ void init_wp_pool() {
   return new_head;
 }
 
-void free_wp(WP *wp){
+void free_wp(int no){
+  WP *wp=head;
+  for (int i = 0; i < no; i++)
+  {
+    wp=wp->next;
+  }
+  
   //wp->value=0;
   //menset(wp->exprssion,0,32);
   if(wp==head){
