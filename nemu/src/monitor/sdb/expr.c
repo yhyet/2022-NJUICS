@@ -121,7 +121,7 @@ static bool make_token(char *e) {
 	  case '(': tokens[nr_token].type='(';nr_token++;break;
 	  case ')': tokens[nr_token].type=')';nr_token++;break;
     case TK_REGNAME: tokens[nr_token].type=TK_REGNAME;strncpy(tokens[nr_token].str,e+position-substr_len+1,substr_len-1);nr_token++;break;
-    case TK_HEXNUM:	tokens[nr_token].type=TK_HEXNUM;strncpy(tokens[nr_token].str,e+position-substr_len+2,substr_len-2);nr_token++;break;
+    case TK_HEXNUM:	tokens[nr_token].type=TK_HEXNUM;strncpy(tokens[nr_token].str,e+position-substr_len+2,substr_len-2);printf("%s",tokens[nr_token].str);nr_token++;break;
 	  case TK_NUMBER: tokens[nr_token].type=TK_NUMBER;strncpy(tokens[nr_token].str,e+position-substr_len,substr_len);nr_token++;break;
 	  case TK_EQ: tokens[nr_token].type=TK_EQ;nr_token++;break;
     case TK_NOTEQ: tokens[nr_token].type=TK_NOTEQ;nr_token++;break;
@@ -340,7 +340,7 @@ static word_t eval(int p,int q){
     {
     case TK_NUMBER: /*printf("num=%s\n",tokens[p].str)*/;sscanf(tokens[p].str,"%d",&N);break;
     case TK_HEXNUM: /*printf("hex=%s\n",tokens[p].str)*/;sscanf(tokens[p].str,"%x",&N);break;
-    case TK_REGNAME: printf("reg=%s\n",tokens[p].str);N=isa_reg_str2val(tokens[p].str,success);break;
+    case TK_REGNAME: /*printf("reg=%s\n",tokens[p].str)*/;N=isa_reg_str2val(tokens[p].str,success);break;
     default:
       break;
     }
