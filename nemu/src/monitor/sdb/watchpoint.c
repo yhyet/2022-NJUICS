@@ -41,8 +41,8 @@ void init_wp_pool() {
 }
 
 /* TODO: Implement the functionality of watchpoint */
-
-WP* new_wp(char* exp){
+/*
+static WP* new_wp(char* exp){
   if(free_==NULL) assert(0);
   WP* new_head;
   new_head=free_;
@@ -65,7 +65,7 @@ WP* new_wp(char* exp){
   return new_head;
 }
 
-void free_wp(WP *wp){
+static void free_wp(WP *wp){
   //wp->value=0;
   //menset(wp->exprssion,0,32);
   if(wp==head){
@@ -84,3 +84,7 @@ void free_wp(WP *wp){
   return;
 }
 
+static bool scan_wp(char* wp){
+  
+}
+*/
