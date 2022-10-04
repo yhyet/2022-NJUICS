@@ -86,6 +86,7 @@ void free_wp(int no){
   }
   wp->next=free_;
   free_=wp;
+  printf("Delete successfully!");
   return;
 }
 
