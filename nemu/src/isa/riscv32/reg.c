@@ -42,6 +42,10 @@ word_t isa_reg_str2val(const char *s, bool *success) {
     }
     
   }
+  if(strcmp(s,"pc")==0)
+  {
+    return cpu.pc;
+  }
   printf("failed to find the reg!--yhy\n");
   return 0;
 }
