@@ -96,9 +96,9 @@ bool scan_wp(){
   while (p->next!=NULL)
   {
     if (expr(p->expression,success)!=p->value){
-      return true;
+      return false;
     }
     p=p->next;
   }
-  return false;
+  return true;
 }
