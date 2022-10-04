@@ -86,14 +86,14 @@ void free_wp(int no){
   }
   wp->next=free_;
   free_=wp;
-  printf("Delete successfully!");
+  printf("Delete successfully!\n");
   return;
 }
 
 bool scan_wp(){
   WP *p=head;
   bool* success=0;
-  while (p->next!=NULL)
+  while (p!=NULL)
   {
     if (expr(p->expression,success)!=p->value){
       return false;
