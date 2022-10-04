@@ -48,9 +48,10 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #endif
 
   bool wp_result=scan_wp();
-  printf("%d",wp_result);
+  //printf("%d\0",wp_result);
   if (wp_result==0){
     nemu_state.state=NEMU_STOP;
+    printf("%d",nemu_state.state);
   }
 }
 
