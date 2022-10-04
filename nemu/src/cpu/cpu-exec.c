@@ -49,12 +49,12 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   }
 #endif
 
-  bool wp_result=scan_wp();
+  /*bool wp_result=scan_wp();
   printf("%d\n",wp_result);
   if (wp_result==0){
     nemu_state.state=NEMU_STOP;
     printf("trigger the watchpoint!\n");
-  }
+  }*/
 }
 
 static void exec_once(Decode *s, vaddr_t pc) {
