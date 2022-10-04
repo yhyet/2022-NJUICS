@@ -46,6 +46,11 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
     nemu_state.state=NEMU_STOP;
   }
 #endif
+
+  bool wp_result=scan_wp();
+  if (!wp_result){
+    nemu_state.state=NEMU_STOP;
+  }
 }
 
 static void exec_once(Decode *s, vaddr_t pc) {
