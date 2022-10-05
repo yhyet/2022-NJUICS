@@ -60,5 +60,6 @@ else
 include $(NEMU_HOME)/scripts/native.mk
 endif
 
-#count: nemu
-#  -type f -name "*.c" | xargs cat | wc -l
+#count:
+#    -type f -name "*.c" | xargs cat | wc -l
+
