@@ -176,7 +176,7 @@ static int cmd_w(char *args) {
 static int cmd_d(char *args) {
   int N=0;
   char *arg = strtok(NULL, " ");
-  sscanf(arg,"%d",&N);
+  sscanf(arg,"%u",&N);
   free_wp(N);
   return 0;
 }
