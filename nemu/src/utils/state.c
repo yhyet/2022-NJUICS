@@ -23,5 +23,5 @@ int is_exit_status_bad() {
   printf("%d\n",good);
   //if (good==1)
   //  return 0;
-  return good;
+  return !good;
 }
