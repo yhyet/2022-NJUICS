@@ -61,4 +61,5 @@ include $(NEMU_HOME)/scripts/native.mk
 endif
 
 count:
-	$(shell -type f -name "*.c" | xargs cat | wc -l)
+#	$(shell -type f -name "*.c" | xargs cat | wc -l).
+	@(find . -iregex ".*\.\(c\|h\)\$$" |xargs cat|grep -v ^\$$|wc -l)
