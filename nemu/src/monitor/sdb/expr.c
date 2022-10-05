@@ -49,7 +49,7 @@ static struct rule {
   {"0x[0-9,a-f]+",TK_HEXNUM},
   {"[0-9]+",TK_NUMBER},
   //{"\\$[$pcrsgta0-9]{2,3}",TK_REGNAME},
-  {"\\$(\\$0|ra|sp|gp|tp|t0|t1|t2|s0|s1|a0|a1|a2|a3|a4|a5|a6|a7|s2|s3|s4|s5|s6|s7|s8|s9|s10|s11|t3|t4|t5|t6|pc)",TK_REGNAME},
+  {"(\\$0|ra|sp|gp|tp|t0|t1|t2|s0|s1|a0|a1|a2|a3|a4|a5|a6|a7|s2|s3|s4|s5|s6|s7|s8|s9|s10|s11|t3|t4|t5|t6|pc)",TK_REGNAME},
   {"!=",TK_NOTEQ},
   {"&&",TK_AND},
 
@@ -85,7 +85,7 @@ typedef struct token {
   char str[32];
 } Token;
 
-static Token tokens[32] __attribute__((used)) = {};
+static Token tokens[64] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
 static bool make_token(char *e) {
@@ -122,7 +122,7 @@ static bool make_token(char *e) {
 	  case '/': tokens[nr_token].type='/';nr_token++;break;
 	  case '(': tokens[nr_token].type='(';nr_token++;break;
 	  case ')': tokens[nr_token].type=')';nr_token++;break;
-    case TK_REGNAME: tokens[nr_token].type=TK_REGNAME;strncpy(tokens[nr_token].str,e+position-substr_len+1,substr_len-1);tokens[nr_token].str[substr_len-1]='\0';nr_token++;break;
+    case TK_REGNAME: tokens[nr_token].type=TK_REGNAME;strncpy(tokens[nr_token].str,e+position-substr_len,substr_len);tokens[nr_token].str[substr_len]='\0';nr_token++;break;
     case TK_HEXNUM:	tokens[nr_token].type=TK_HEXNUM;strncpy(tokens[nr_token].str,e+position-substr_len+2,substr_len-2);tokens[nr_token].str[substr_len-2]='\0';/*printf("hexstr=%s\n",tokens[nr_token].str);*/nr_token++;break;
 	  case TK_NUMBER: tokens[nr_token].type=TK_NUMBER;strncpy(tokens[nr_token].str,e+position-substr_len,substr_len);tokens[nr_token].str[substr_len]='\0';nr_token++;break;
 	  case TK_EQ: tokens[nr_token].type=TK_EQ;nr_token++;break;
