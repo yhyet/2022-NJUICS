@@ -164,7 +164,7 @@ static int cmd_p(char *args) {
   bool *success=0;
   //bool success0=true;
   //success=success0;
-  printf("%d\n",expr(args,success));
+  printf("%u\n",expr(args,success));
 
   return 0;
 }
