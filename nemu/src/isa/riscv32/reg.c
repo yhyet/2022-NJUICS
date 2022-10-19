@@ -47,5 +47,6 @@ word_t isa_reg_str2val(const char *s, bool *success) {
     return cpu.pc;
   }
   printf("failed to find the reg!--yhy\n");
+  *success=false;
   assert(0);
 }

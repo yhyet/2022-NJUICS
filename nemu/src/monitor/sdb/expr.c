@@ -187,7 +187,7 @@ word_t expr(char *e, bool *success) {
   
   }
   //printf("t0=%d\n",tokens[0].type);
-  //*success=true;
+  *success=true;
   return eval(0,nr_token-1);
 }
 
