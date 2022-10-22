@@ -32,7 +32,7 @@ enum {
 #define immI() do { *imm = SEXT(BITS(i, 31, 20), 12); } while(0)
 #define immU() do { *imm = SEXT(BITS(i, 31, 12), 20) << 12; } while(0)
 #define immS() do { *imm = (SEXT(BITS(i, 31, 25), 7) << 5) | SEXT(BITS(i, 11, 7), 5);} while(0)
-#define immJ() do { *imm = SEXT(((BITS(i, 31, 31)<< 20) | (BITS(i, 30, 21) << 1) | (BITS(i, 20, 20) << 11) | (BITS(i, 19, 12)<<12)),20);} while(0)
+#define immJ() do { *imm = SEXT(((BITS(i, 31, 31)<< 20) | (BITS(i, 30, 21) << 1) | (BITS(i, 20, 20) << 11) | (BITS(i, 19, 12)<<12)),21);} while(0)
 #define immB() do { *imm = SEXT((BITS(i,31,31)<<12) | (BITS(i,30,25)<<5) | (BITS(i,11,7)<<1) | (BITS(i,7,7)<<11),13); } while(0)
 
 //handle caozuoduixiang--yhy
@@ -107,7 +107,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("??????? ????? ????? ??? ????? 01101 11", lui    , U, R(dest) = imm);
   INSTPAT("??????? ????? ????? ??? ????? 00101 11", auipc  , U, R(dest) = imm+s->pc);
   //TYPE_J
-  INSTPAT("??????? ????? ????? ??? ????? 11011 11", jal    , J, (s->dnpc)=(s->pc)+(imm); R(dest)=s->pc+4);
+  INSTPAT("??????? ????? ????? ??? ????? 11011 11", jal    , J, (s->dnpc)=(s->pc)+(imm<<1); R(dest)=s->pc+4);
   //TYPE_N
   INSTPAT("0000000 00001 00000 000 00000 11100 11", ebreak , N, NEMUTRAP(s->pc, R(10))); // R(10) is $a0
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc));
