@@ -97,7 +97,8 @@ void *memset(void *s, int c, size_t n) {
   char *pvs =(char *)s;
   while (n-->0)
   {
-    *pvs++ = c;
+    *pvs = c;
+    pvs++;
   }
   return s;
 }
