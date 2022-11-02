@@ -146,14 +146,14 @@ int memcmp(const void *s1, const void *s2, size_t n) {
   //panic("Not implemented");
     if (((char *)s1==NULL)||((char *)s2==NULL))
     return -2;
-  while ((*(char *)s1!='\0')&&(*(char *)s1==*(char *)s2))
+  while (*(unsigned char *)s1==*(unsigned char *)s2)
   {
-    (char *)s1++;
-    (char *)s2++;
+    (unsigned char *)s1++;
+    (unsigned char *)s2++;
   }
-  if (*(char *)s1>*(char *)s2)
+  if (*(unsigned char *)s1>*(unsigned char *)s2)
     return 1;
-  else if(*(char *)s1<*(char *)s2)
+  else if(*(unsigned char *)s1<*(unsigned char *)s2)
     return -1;
   else
     return 0;
