@@ -55,7 +55,7 @@ char *strcat(char *dst, const char *src) {
 }
 
 int strcmp(const char *s1, const char *s2) {
-  //panic("Not implemented");
+  panic("Not implemented");
   if ((s1==NULL)||(s2==NULL))
     return -2;
   while ((*s1!='\0')&&(*s1==*s2))
