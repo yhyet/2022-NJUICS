@@ -143,7 +143,7 @@ void *memcpy(void *out, const void *in, size_t n) {
 
 int memcmp(const void *s1, const void *s2, size_t n) {
   //panic("Not implemented");
-    if ((*(char *)s1==NULL)||(*(char *)s2==NULL))
+    if (((char *)s1==NULL)||((char *)s2==NULL))
     return -2;
   while ((*(char *)s1!='\0')&&(*(char *)s1==*(char *)s2))
   {
