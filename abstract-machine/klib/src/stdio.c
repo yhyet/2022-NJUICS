@@ -65,7 +65,7 @@ int sprintf(char *out, const char *fmt, ...) {
       break;
 
     case 'd':
-      int d;
+      int d=0;
       d=va_arg(ap,int);
       int digit=1,d1=d,d2=d;
       while (d1/10)
