@@ -82,9 +82,11 @@ int sprintf(char *out, const char *fmt, ...) {
         p--;
       }
       */
+
       char s1[128]={0};
       char *p=s1;
       inttostring(d,p);
+      
       while (*p)
       {
         *out=*p;
@@ -95,7 +97,7 @@ int sprintf(char *out, const char *fmt, ...) {
     default:
       break;
     }
-
+    fmt++;
   }
   va_end(ap);
   *out='\0';
