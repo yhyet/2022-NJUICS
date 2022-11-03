@@ -78,7 +78,7 @@ int sprintf(char *out, const char *fmt, ...) {
       out+=digit;
       for (; digit>0; digit--)
       {
-        *out=d1%10+'0';
+        *out=d1%10;
         d1=d1/10;
         out--;
       }
@@ -102,7 +102,7 @@ int sprintf(char *out, const char *fmt, ...) {
     fmt++;
   }
   va_end(ap);
-  out++;
+  //out++;
   *out='\0';
   return 0;
 }
