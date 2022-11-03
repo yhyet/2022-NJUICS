@@ -71,10 +71,18 @@ int sprintf(char *out, const char *fmt, ...) {
       {
         digit++;
       }
-      char s1[128]={0};
-      char *p=s1;
-      //char *s1;
-      inttostring(d,p);
+      char *p;
+      p+=digit;
+      for (; digit>0; digit--)
+      {
+        *p=d1%10+'0';
+        d1=d1/10;
+        p--;
+      }
+      
+      //char s1[128]={0};
+      //char *p=s1;
+      //inttostring(d,p);
       while (*p)
       {
         *out=*p;
