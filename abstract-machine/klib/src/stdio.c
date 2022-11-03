@@ -82,7 +82,7 @@ int sprintf(char *out, const char *fmt, ...) {
         d1=d1/10;
         out--;
       }
-      out+=digit;
+      out+=digit+1;
       /*
       char s1[128]={0};
       char *p=s1;
