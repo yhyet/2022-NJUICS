@@ -67,7 +67,7 @@ int sprintf(char *out, const char *fmt, ...) {
     case 'd':
       int d;
       d=va_arg(ap,int);
-      int digit=1,d1=d;
+      int digit=1,d1=d,d2=d;
       while (d1/10)
       {
         digit++;
@@ -78,8 +78,8 @@ int sprintf(char *out, const char *fmt, ...) {
       out+=digit;
       for (; digit>0; digit--)
       {
-        *out=d1%10+'0';
-        d1=d1/10;
+        *out=d2%10+'0';
+        d2=d2/10;
         out--;
       }
       out=out+digit+1;
