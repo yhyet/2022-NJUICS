@@ -77,7 +77,7 @@ int sprintf(char *out, const char *fmt, ...) {
       p+=digit;
       for (; digit>0; digit--)
       {
-        *p=d1%10+'0';
+        *p=d1%10;
         d1=d1/10;
         p--;
       }
