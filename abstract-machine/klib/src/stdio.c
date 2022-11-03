@@ -50,7 +50,6 @@ int sprintf(char *out, const char *fmt, ...) {
       out++;
       continue;
     }
-    fmt++;
     switch (*fmt++)
     {
     case 's':
@@ -67,6 +66,11 @@ int sprintf(char *out, const char *fmt, ...) {
     case 'd':
       int d;
       d=va_arg(ap,int);
+      int digit=1,d1=d;
+      while (d1/10)
+      {
+        digit++;
+      }
       char s1[128]={0};
       char *p=s1;
       //char *s1;
