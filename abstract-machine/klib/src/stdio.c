@@ -78,11 +78,11 @@ int sprintf(char *out, const char *fmt, ...) {
       out+=digit;
       for (; digit>0; digit--)
       {
-        *out=(char)d1%10;
+        *out=d1%10+'0';
         d1=d1/10;
         out--;
       }
-      out+=digit+1;
+      out=out+digit+1;
       /*
       char s1[128]={0};
       char *p=s1;
