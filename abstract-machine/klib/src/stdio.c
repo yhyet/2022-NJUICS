@@ -42,9 +42,13 @@ int sprintf(char *out, const char *fmt, ...) {
   va_start (ap,fmt);
   while (*fmt!= '\0')
   {
-    if (*fmt=='%')
+    if (*fmt!='%')
     {
-
+      *out=*fmt;
+      fmt++;
+      out++;
+      continue;
+    }
     fmt++;
     switch (*fmt)
     {
@@ -63,7 +67,7 @@ int sprintf(char *out, const char *fmt, ...) {
     case 'd':{
       int d=0;
       d=va_arg(ap,int);
-      int digit=0,d1=d,d2=d;
+      int digit=0,d1=d;
       do{
         d1=d1/10;
         digit++;
@@ -78,12 +82,11 @@ int sprintf(char *out, const char *fmt, ...) {
       }
       */
      do{
-    *out = (char)(d2%10 + '0');
-    d2/=10;
+    *out = (char)(d%10 + '0');
+    d/=10;
     out--;
     }
-    while(d2 > 0);
-
+    while(d > 0);
       out=out+digit+1;
       fmt++;
       break;}
@@ -94,13 +97,6 @@ int sprintf(char *out, const char *fmt, ...) {
       break;}
     }
     fmt++;
-    }
-    else{
-      *out=*fmt;
-      fmt++;
-      out++;
-      continue;
-    }
   }
   va_end(ap);
   //out++;
