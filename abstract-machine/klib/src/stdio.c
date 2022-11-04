@@ -53,7 +53,7 @@ int sprintf(char *out, const char *fmt, ...) {
     fmt++;
     switch (*fmt)
     {
-    case 's':
+    case 's':{
       char *s;
       s=va_arg(ap,char *);
       while (*s)
@@ -63,9 +63,9 @@ int sprintf(char *out, const char *fmt, ...) {
         s++;
       }
       fmt++;
-      break;
+      break;}
 
-    case 'd':
+    case 'd':{
       int d=0;
       d=va_arg(ap,int);
       int digit=0,d1=d,d2=d;
@@ -98,12 +98,12 @@ int sprintf(char *out, const char *fmt, ...) {
         p++;
       }
       */
-      break;
-    default:
+      break;}
+    default:{
       *out=*fmt;
       out++;
       fmt++;
-      break;
+      break;}
     }
     fmt++;
   }
