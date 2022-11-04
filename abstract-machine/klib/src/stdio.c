@@ -36,7 +36,7 @@ int printf(const char *fmt, ...) {
 int vsprintf(char *out, const char *fmt, va_list ap) {
   panic("Not implemented");
 }
-
+/*
 int sprintf(char *out, const char *fmt, ...) {
   //panic("Not implemented");
   va_list ap;
@@ -86,18 +86,18 @@ int sprintf(char *out, const char *fmt, ...) {
       }
       out=out+digit+1;
       fmt++;
-      /*
+      
       char s1[128]={0};
       char *p=s1;
       inttostring(d,p);
-      */
-      /*while (*p)
+      
+      while (*p)
       {
         *out=*p;
         out++;
         p++;
       }
-      */
+      
       break;}
     default:{
       *out=*fmt;
@@ -118,7 +118,128 @@ int sprintf(char *out, const char *fmt, ...) {
   while(*out!='\0');
   return n;
 }
+*/
+int sprintf(char *out, const char *fmt, ...) {
 
+va_list ap;
+
+va_start(ap,fmt);
+
+char *a=out,*b=(char *)fmt,*c;
+
+int m,n=0;
+
+while(*b !='\0'){
+
+if(*b == '%'){
+
+b++;
+
+switch(*b){
+
+case 's':{
+
+c = va_arg(ap,char *);
+
+while(*c != '\0'){
+
+*a = *c;
+
+a++;
+
+c++;
+
+}
+
+b++;
+
+break;
+
+}
+
+case 'd':{
+
+m = va_arg(ap,int);
+
+int i=m,j=0;
+
+do{
+
+i/=10;
+
+j++;
+
+}
+
+while(i>0);
+
+a+=j-1;
+
+do{
+
+*a = (char)(m%10 + 0x30);
+
+m/=10;
+
+a--;
+
+}
+
+while(m > 0);
+
+a+=j+1;
+
+b++;
+
+break;
+
+}
+
+default:{
+
+*a = *b;
+
+a++;
+
+b++;
+
+break;
+
+}
+
+}
+
+}
+
+else{
+
+*a = *b;
+
+a++;
+
+b++;
+
+}
+
+}
+
+*a = '\0';
+
+va_end(ap);
+
+do{
+
+n++;
+
+out++;
+
+}
+
+while(*out != '\0');
+
+return n;
+
+}
 int snprintf(char *out, size_t n, const char *fmt, ...) {
   panic("Not implemented");
 }
