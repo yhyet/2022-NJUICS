@@ -68,13 +68,12 @@ int sprintf(char *out, const char *fmt, ...) {
     case 'd':
       int d=0;
       d=va_arg(ap,int);
-      int digit=1,d1=d,d2=d;
-      d1=d1/10;
-      while (d1)
-      {
-        digit++;
+      int digit=0,d1=d,d2=d;
+      do{
         d1=d1/10;
+        digit++;
       }
+      while (d1>0);
       //char s1[128]={0};
       //char *p=s1;
       //p+=digit;
