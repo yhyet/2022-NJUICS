@@ -105,7 +105,13 @@ int sprintf(char *out, const char *fmt, ...) {
   va_end(ap);
   //out++;
   *out='\0';
-  return 0;
+  int n=0;
+  do{
+    n++;
+    out++;
+  }
+  while(*out!=0);
+  return n;
 }
 
 int snprintf(char *out, size_t n, const char *fmt, ...) {
