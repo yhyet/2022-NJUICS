@@ -62,6 +62,7 @@ int sprintf(char *out, const char *fmt, ...) {
         out++;
         s++;
       }
+      
       break;
 
     case 'd':
@@ -98,6 +99,9 @@ int sprintf(char *out, const char *fmt, ...) {
       */
       break;
     default:
+      *out=*fmt;
+      out++;
+      fmt++;
       break;
     }
     fmt++;
