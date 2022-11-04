@@ -115,7 +115,7 @@ int sprintf(char *out, const char *fmt, ...) {
     n++;
     out++;
   }
-  while(*out!=0);
+  while(*out!='\0');
   return n;
 }
 
