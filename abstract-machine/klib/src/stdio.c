@@ -69,9 +69,11 @@ int sprintf(char *out, const char *fmt, ...) {
       int d=0;
       d=va_arg(ap,int);
       int digit=1,d1=d,d2=d;
-      while (d1/10)
+      d1=d1/10;
+      while (d1)
       {
         digit++;
+        d1=d1/10;
       }
       //char s1[128]={0};
       //char *p=s1;
