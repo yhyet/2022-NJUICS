@@ -62,7 +62,7 @@ int sprintf(char *out, const char *fmt, ...) {
         out++;
         s++;
       }
-      
+      fmt++;
       break;
 
     case 'd':
