@@ -36,8 +36,17 @@ static int iring_timer=0;
 void device_update();
 
 static void iringbuf_write(){
+  iring_timer--;
+  if (iring_timer==-1)
+  {
+    iring_timer=15;
+  }
   for (int i = 0; i < 16; i++)
   {
+    if (i==iring_timer)
+      log_write("--->");
+    else
+      log_write("    ");
     log_write("%s\n",iringbuf[i]);
   }
   return;
