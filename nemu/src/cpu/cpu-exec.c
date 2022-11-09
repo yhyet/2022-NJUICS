@@ -30,14 +30,34 @@ CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
-
+//IFDEF(CONFIG_IRINGBUF, char iringbuf[16][128]);
+static char iringbuf[16][128];
+static int iring_timer=0;
 void device_update();
+
+static void iringbuf_write(){
+  for (int i = 0; i < 16; i++)
+  {
+    log_write("%s\n",iringbuf[i]);
+  }
+  return;
+}
+
+static void iringbuf_update(char *logbuf){
+  strcpy(iringbuf[iring_timer],logbuf);
+  iring_timer=(iring_timer+1)%16;
+}
 
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #ifdef CONFIG_ITRACE_COND
-  if (ITRACE_COND) { log_write("%s\n", _this->logbuf); }
+  if (CONFIG_ITRACE_COND) { log_write("%s\n", _this->logbuf); }
+  if (CONFIG_IRINGBUF) { iringbuf_update(_this->logbuf);}
 #endif
+
+
+
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
+
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
 
 #ifdef CONFIG_WATCHPOINT
@@ -131,6 +151,7 @@ void cpu_exec(uint64_t n) {
     case NEMU_RUNNING: nemu_state.state = NEMU_STOP; break;
 
     case NEMU_END: case NEMU_ABORT:
+      IFDEF(CONFIG_IRINGBUF,iringbuf_write());
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
            (nemu_state.halt_ret == 0 ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN) :
