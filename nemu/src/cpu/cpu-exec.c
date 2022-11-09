@@ -51,10 +51,8 @@ static void iringbuf_update(char *logbuf){
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #ifdef CONFIG_ITRACE_COND
   if (CONFIG_ITRACE_COND) { log_write("%s\n", _this->logbuf); }
-  if (CONFIG_IRINGBUF) { iringbuf_update(_this->logbuf);}
 #endif
-
-
+if (CONFIG_IRINGBUF) { iringbuf_update(_this->logbuf);}
 
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
 

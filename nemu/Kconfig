@@ -147,7 +147,7 @@ config ITRACE
 config ITRACE_COND
   depends on ITRACE
   string "Only trace instructions when the condition is true"
-  default "true"
+  default 0
 
 config IRINGBUF
   depends on ITRACE
