@@ -18,7 +18,9 @@
 #include <device/mmio.h>
 #include <isa.h>
 
-static void mtrace(paddr_t addr,int len,word_t data,int flag);
+#ifdef CONFIG_MEMORY_TRACE
+  static void mtrace(paddr_t addr,int len,word_t data,int flag);
+#endif
 
 #if   defined(CONFIG_PMEM_MALLOC)
 static uint8_t *pmem = NULL;
@@ -44,7 +46,7 @@ static void out_of_bound(paddr_t addr) {
 }
 
 void init_mem() {
-  mtrace(0,0,0,-1);
+  //mtrace(0,0,0,-1);
 #if   defined(CONFIG_PMEM_MALLOC)
   pmem = malloc(CONFIG_MSIZE);
   assert(pmem);
@@ -84,7 +86,7 @@ void paddr_write(paddr_t addr, int len, word_t data) {
   IFDEF(CONFIG_DEVICE, mmio_write(addr, len, data); return);
   out_of_bound(addr);
 }
-
+#ifdef CONFIG_MEMORY_TRACE
 static void mtrace(paddr_t addr,int len,word_t data,int flag){
   if (flag==1)
   {
@@ -100,3 +102,4 @@ static void mtrace(paddr_t addr,int len,word_t data,int flag){
   }
   return;
 }
+#endif

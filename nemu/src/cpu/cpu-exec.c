@@ -31,10 +31,11 @@ uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
 //IFDEF(CONFIG_IRINGBUF, char iringbuf[16][128]);
-static char iringbuf[16][128];
-static int iring_timer=0;
 void device_update();
 
+#ifdef CONFIG_IRINGBUF
+static char iringbuf[16][128];
+static int iring_timer=0;
 static void iringbuf_write(){
   iring_timer--;
   if (iring_timer==-1)
@@ -56,13 +57,15 @@ static void iringbuf_update(char *logbuf){
   strcpy(iringbuf[iring_timer],logbuf);
   iring_timer=(iring_timer+1)%16;
 }
+#endif
 
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #ifdef CONFIG_ITRACE_COND
   if (CONFIG_ITRACE_COND) { log_write("%s\n", _this->logbuf); }
 #endif
+#ifdef CONFIG_IRINGBUF
 if (CONFIG_IRINGBUF) { iringbuf_update(_this->logbuf);}
-
+#endif
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
 
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
