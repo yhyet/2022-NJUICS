@@ -44,6 +44,7 @@ static void out_of_bound(paddr_t addr) {
 }
 
 void init_mem() {
+  mtrace(0,0,0,-1);
 #if   defined(CONFIG_PMEM_MALLOC)
   pmem = malloc(CONFIG_MSIZE);
   assert(pmem);
@@ -89,10 +90,13 @@ static void mtrace(paddr_t addr,int len,word_t data,int flag){
   {
     log_write("men_read : ");
     log_write("0x%x\n",pmem_read(addr,len));
+    return;
   }
   else if (flag==0)
   {
     log_write("men_write: ");
     log_write("0x%x\n",data);
+    return;
   }
+  return;
 }
