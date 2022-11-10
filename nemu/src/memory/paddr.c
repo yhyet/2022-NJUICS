@@ -88,11 +88,11 @@ static void mtrace(paddr_t addr,int len,word_t data,int flag){
   if (flag==1)
   {
     log_write("men_read : ");
-    log_write("%i",pmem_read(addr,len));
+    log_write("%i\n",pmem_read(addr,len));
   }
   else if (flag==0)
   {
     log_write("men_write: ");
-    log_write("%i",data);
+    log_write("%i\n",data);
   }
 }
