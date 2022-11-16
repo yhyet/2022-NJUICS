@@ -90,7 +90,7 @@ int printf(const char *fmt, ...) {
   //panic("Not implemented");
   va_list ap;
   va_start (ap,fmt);
-  int d=0;
+  /*int d=0;
   char *s;
   while (*fmt!= '\0')
   {
@@ -123,13 +123,6 @@ int printf(const char *fmt, ...) {
       while (d1>0);
       char a[128]={};
       int2char(d,digit,a);
-      /*
-      int i=0;
-      while (a[i]!='\0')
-      {
-        putch(a[i]);
-        i++;
-      }*/
       for (int i = 0; i < digit; i++)
       {
         putch(a[i]);
@@ -149,6 +142,17 @@ int printf(const char *fmt, ...) {
   //out++;
   putch('\0');
   return 0;
+  */
+  char out[128]={};
+  int n=makestr(out,fmt,ap);
+  char *putchp=out;
+  while (*putchp!='\0')
+  {
+    putch(*putchp);
+    putchp++;
+  }
+  va_end(ap);
+  return n;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
