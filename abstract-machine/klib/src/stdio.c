@@ -53,11 +53,16 @@ int printf(const char *fmt, ...) {
       char a[128]={};
       //char *putchp=
       int2char(d,digit,a);
+      /*
       int i=0;
       while (a[i]!='\0')
       {
         putch(a[i]);
         i++;
+      }*/
+      for (int i = 0; i < digit; i++)
+      {
+        putch(a[i]);
       }
       
       
