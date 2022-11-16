@@ -68,7 +68,7 @@ void __am_ioe_init() {
   ioe_init_done = true;
 }
 
-static void cdo_io(int reg, void *buf) {
+static void do_io(int reg, void *buf) {
   if (!ioe_init_done) {
     __am_ioe_init();
   }
