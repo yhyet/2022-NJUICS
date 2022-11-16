@@ -4,7 +4,7 @@
 //#include <riscv.h>
 void __am_timer_init() {
     printf("%d",inl(RTC_ADDR));
-
+    io_read(AM_TIMER_UPTIME);
 }
 
 void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
