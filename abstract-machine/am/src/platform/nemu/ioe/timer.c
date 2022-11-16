@@ -9,7 +9,7 @@ static uint64_t read_time() {
   uint32_t hi = inl(RTC_ADDR+0x4);*/
   uint64_t time = ((uint64_t)inl(RTC_ADDR+4) << 32) | inl(RTC_ADDR);
   //printf("%d",time);
-  return time/10;
+  return time;
 }
 
 void __am_timer_init() {
