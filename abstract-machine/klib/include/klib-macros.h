@@ -17,6 +17,7 @@
 
 #define io_read(reg) \
   ({ reg##_T __io_param; \
+    printf("io-read\n");\
     ioe_read(reg, &__io_param); \
     __io_param; })
 
