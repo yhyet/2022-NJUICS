@@ -5,9 +5,74 @@
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
+void int2char(int d,int digit,char *a){
+  //char a[128]={};
+  a[digit]='\0';
+  for (int i = digit-1; i >=0; i--)
+  {
+    a[i]=d%10;
+    d=d/10;
+  }
+}
+
 int printf(const char *fmt, ...) {
   //panic("Not implemented");
-  putch(*fmt);
+  va_list ap;
+  va_start (ap,fmt);
+  int d=0;
+  char *s;
+  while (*fmt!= '\0')
+  {
+    if (*fmt!='%')
+    {
+      putch(*fmt);
+      fmt++;
+      continue;
+    }
+    fmt++;
+    switch (*fmt)
+    {
+    case 's':{
+      s=va_arg(ap,char *);
+      while (*s!='\0')
+      {
+        putch(*s);
+        s++;
+      }
+      fmt++;
+      break;}
+
+    case 'd':{
+      d=va_arg(ap,int);
+      int digit=0,d1=d;
+      do{
+        d1=d1/10;
+        digit++;
+      }
+      while (d1>0);
+      char a[128]={};
+      //char *putchp=
+      int2char(d,digit,a);
+      int i=0;
+      while (a[i]!='\0')
+      {
+        putch(a[i]);
+        i++;
+      }
+      
+      
+      fmt++;
+      break;}
+    default:{
+      putch(*fmt);
+      fmt++;
+      break;}
+    }
+    //fmt++;
+  }
+  va_end(ap);
+  //out++;
+  putch('\0');
   return 0;
 }
 
