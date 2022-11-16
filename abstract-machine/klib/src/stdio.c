@@ -90,59 +90,6 @@ int printf(const char *fmt, ...) {
   //panic("Not implemented");
   va_list ap;
   va_start (ap,fmt);
-  /*int d=0;
-  char *s;
-  while (*fmt!= '\0')
-  {
-    if (*fmt!='%')
-    {
-      putch(*fmt);
-      fmt++;
-      continue;
-    }
-    fmt++;
-    switch (*fmt)
-    {
-    case 's':{
-      s=va_arg(ap,char *);
-      while (*s!='\0')
-      {
-        putch(*s);
-        s++;
-      }
-      fmt++;
-      break;}
-
-    case 'd':{
-      d=va_arg(ap,int);
-      int digit=0,d1=d;
-      do{
-        d1=d1/10;
-        digit++;
-      }
-      while (d1>0);
-      char a[128]={};
-      int2char(d,digit,a);
-      for (int i = 0; i < digit; i++)
-      {
-        putch(a[i]);
-      }
-      
-      
-      fmt++;
-      break;}
-    default:{
-      putch(*fmt);
-      fmt++;
-      break;}
-    }
-    //fmt++;
-  }
-  va_end(ap);
-  //out++;
-  putch('\0');
-  return 0;
-  */
   char out[128]={};
   int n=makestr(out,fmt,ap);
   char *putchp=out;
