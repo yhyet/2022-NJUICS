@@ -1,7 +1,10 @@
 #include <am.h>
 #include <nemu.h>
-
+#include <klib.h>
+//#include <riscv.h>
 void __am_timer_init() {
+    printf("%d",inl(RTC_ADDR));
+
 }
 
 void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
