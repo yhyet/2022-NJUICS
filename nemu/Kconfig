@@ -158,6 +158,10 @@ config MEMORY_TRACE
   bool "Enable memory_trace--yhy"
   default 0
 
+config DEVICE_TRACE
+  bool "Enable device_trace--yhy"
+  default 0
+
 config DIFFTEST
   depends on TARGET_NATIVE_ELF
   bool "Enable differential testing"
