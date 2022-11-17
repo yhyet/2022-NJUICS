@@ -11,9 +11,9 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
   }
   printf("yhy-%d\n",inl(KBD_ADDR));
   sec++;
-  kbd->keydown=1;
-  //kbd->keycode = inl(KBD_ADDR) & ~KEYDOWN_MASK;
+  kbd->keydown = (inl(KBD_ADDR) & KEYDOWN_MASK)?true :false;
+  kbd->keycode = inl(KBD_ADDR) & ~KEYDOWN_MASK;
   //static int i=0;
-  kbd->keycode=0;
+  //kbd->keycode=0;
   //i++;
 }
