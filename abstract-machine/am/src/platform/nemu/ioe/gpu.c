@@ -7,8 +7,8 @@
 
 void __am_gpu_init() {
   int i;
-  int w=0;
-  int h=0;
+  int w=W;
+  int h=H;
   uint32_t *fb=(uint32_t *)(uintptr_t)FB_ADDR;
   for ( i = 0; i < w*h; i++)
   {
