@@ -40,6 +40,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
         
     }
   }
+  outl(FB_ADDR,1);
   //printf("%d,%d\n",ctl->h,ctl->w);
 }
 
