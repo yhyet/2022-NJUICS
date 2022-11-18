@@ -20,7 +20,7 @@ void __am_gpu_init() {
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
   *cfg = (AM_GPU_CONFIG_T) {
     .present = true, .has_accel = false,
-    .width = 0, .height = 0,
+    .width = W, .height = H,
     .vmemsz = 0
   };
 }
