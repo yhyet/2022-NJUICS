@@ -35,7 +35,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   //ctl->w = W;
   for(i = 0;i <ctl->h;i++){
     for(j = 0;j <ctl->w;j++){
-        outl(FB_ADDR + i*W*4 + j*4,*(uint32_t *)(ctl->pixels));
+        outl((uintptr_t)FB_ADDR + i*W*4 + j*4,*(uint32_t *)(ctl->pixels));
         (ctl->pixels)+=4;
         
     }
