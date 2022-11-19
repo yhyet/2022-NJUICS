@@ -39,7 +39,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
     for(j = 0;j <ctl->w;j++){
         //printf("x,y=%d,%d\n",ctl->x,ctl->y);
         outl(addr+ i*W*4 + j*4,*(uint32_t *)(ctl->pixels));
-        (ctl->pixels)+=4;
+        (ctl->pixels)+=1;
         
     }
   }
