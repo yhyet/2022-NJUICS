@@ -26,7 +26,6 @@ enum {
   TYPE_I, TYPE_U, TYPE_S, TYPE_J, TYPE_R, TYPE_B,
   TYPE_N, // none
 };
-
 uint32_t* csr_no(int csr_no){
     switch(csr_no){
         case 0x300://不支持被软件显示改变
