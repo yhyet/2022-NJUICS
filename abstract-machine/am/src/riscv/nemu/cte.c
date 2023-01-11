@@ -40,7 +40,7 @@ Context* __am_irq_handle(Context *c) {
     c = user_handler(ev, c);
     assert(c != NULL);
     int a=1;
-    printf("c->mepc=%#x\n",a);
+    printf("c->mepc=%d\n",a);
 
     c->mepc += 4;
   }
