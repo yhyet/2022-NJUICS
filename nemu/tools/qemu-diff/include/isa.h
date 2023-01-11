@@ -41,6 +41,7 @@ union isa_gdb_regs {
 #elif defined(CONFIG_ISA_riscv32)
     uint32_t gpr[32];
     uint32_t pc;
+    
 #elif defined(CONFIG_ISA_riscv64)
     uint64_t gpr[32];
     uint64_t fpr[32];

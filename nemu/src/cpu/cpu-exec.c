@@ -32,7 +32,6 @@ static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
 //IFDEF(CONFIG_IRINGBUF, char iringbuf[16][128]);
 void device_update();
-
 #ifdef CONFIG_IRINGBUF
 static char iringbuf[16][128];
 static int iring_timer=0;
