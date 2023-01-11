@@ -1,9 +1,10 @@
 #include <am.h>
 #include <riscv/riscv.h>
 #include <klib.h>
+#include <arch/riscv32-nemu.h>
 
 static Context* (*user_handler)(Event, Context*) = NULL;
-
+/*
 Context* __am_irq_handle(Context *c) {
   if (user_handler) {
     Event ev = {0};
@@ -17,6 +18,34 @@ Context* __am_irq_handle(Context *c) {
 
   return c;
 }
+*/
+
+Context* __am_irq_handle(Context *c) {
+  if (user_handler) {
+    Event ev = {0};
+    
+    switch (c->mcause) {
+      case (11):
+        // printf("c->GPR1 = %d \n", c->GPR1);
+        if (c->GPR1 == -1){ // ÌØÖ¸-1
+          ev.event = EVENT_YIELD;
+        }else {
+          ev.event = EVENT_SYSCALL;
+        }
+        break;
+
+      default: ev.event = EVENT_ERROR; break;
+    }
+
+    c = user_handler(ev, c);
+    assert(c != NULL);
+    c->mepc += 4;
+  }
+
+  return c;
+}
+
+
 
 extern void __am_asm_trap(void);
 
