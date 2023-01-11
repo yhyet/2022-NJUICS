@@ -90,7 +90,7 @@ int printf(const char *fmt, ...) {
   //panic("Not implemented");
   va_list ap;
   va_start (ap,fmt);
-  char out[128]={};
+  char out[4096]={};
   int n=makestr(out,fmt,ap);
   char *putchp=out;
   while (*putchp!='\0')
