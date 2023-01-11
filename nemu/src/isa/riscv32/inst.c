@@ -32,6 +32,7 @@ uint32_t* csr_no(int csr_no){
             return &(cpu.mstatus.value);
 
         case 0x305:
+            printf("mtvec=%d\n",cpu.mtvec);
             return &(cpu.mtvec);
 
         case 0x341:
