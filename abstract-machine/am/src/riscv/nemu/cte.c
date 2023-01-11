@@ -36,11 +36,10 @@ Context* __am_irq_handle(Context *c) {
 
       default: ev.event = EVENT_ERROR; break;
     }
-
+    
     c = user_handler(ev, c);
     assert(c != NULL);
-    int a=1;
-    printf("c->mepc=%d\n",a);
+    printf("c->mepc=%d\n",c->mepc);
 
     c->mepc += 4;
   }
