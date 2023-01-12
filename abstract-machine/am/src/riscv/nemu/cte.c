@@ -42,7 +42,7 @@ Context* __am_irq_handle(Context *c) {
     assert(c != NULL);
     //printf("c->mepc=%d\n",c->mepc);
 
-    c->mepc += 4;
+    //c->mepc += 4;
   }
 
   return c;
