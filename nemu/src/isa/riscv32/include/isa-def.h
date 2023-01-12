@@ -30,14 +30,6 @@ typedef struct {
   } mstatus;
 } riscv32_CPU_state;
 
-/*
-typedef struct 
-{
-  word_t mepc;
-  word_t mtvec;
-  word_t mcause;
-} riscv32_CSR_state;
-*/
 
 // decode
 typedef struct {

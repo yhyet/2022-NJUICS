@@ -28,11 +28,8 @@ Context* __am_irq_handle(Context *c) {
     switch (c->mcause) {
       case (11):
         // printf("c->GPR1 = %d \n", c->GPR1);
-        if (c->GPR1 == -1){ // Ãÿ÷∏-1
           ev.event = EVENT_YIELD;
-        }else {
-          ev.event = EVENT_SYSCALL;
-        }
+
         break;
 
       default: ev.event = EVENT_ERROR; break;
