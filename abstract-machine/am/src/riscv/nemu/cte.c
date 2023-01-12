@@ -21,7 +21,7 @@ Context* __am_irq_handle(Context *c) {
 */
 
 Context* __am_irq_handle(Context *c) {
-  printf("am_irq_handle_c->mcause=%d\n",c->mcause);
+  //printf("am_irq_handle_c->mcause=%d\n",c->mcause);
   if (user_handler) {
     Event ev = {0};
     
