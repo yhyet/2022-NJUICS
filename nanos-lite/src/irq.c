@@ -4,7 +4,7 @@ void do_syscall(Context *c);
 static Context* do_event(Event e, Context* c) {
   switch (e.event) {
     case EVENT_YIELD:
-      printf("yhynb!\n");
+      printf("made by yhy\n");
       break;
 
     case EVENT_SYSCALL:
